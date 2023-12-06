@@ -121,11 +121,29 @@
       </tbody>
     </table>
   </div>
-
-<!-- Bootstrap JS and jQuery (required for Bootstrap) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+  
+  <!-- Employee Profile Modal -->
+  <div class="modal" id="employeeProfileModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">تفاصيل الموظف</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Employee details will be dynamically added here using JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
 <!-- Your custom JavaScript for fetching and displaying data -->
 <script>
   // Function to generate random data
@@ -214,6 +232,27 @@
     }
   }
 
+ // Function to show employee profile modal
+ function showEmployeeProfile(data) {
+    const modalBody = document.querySelector('#employeeProfileModal .modal-body');
+    modalBody.innerHTML = `
+      <div>
+        <h5>الاسم الرباعي: ${data.fullName}</h5>
+        <p>الدرجة: ${data.position}</p>
+        <p>القسم: ${data.department}</p>
+        <p>الفرع: ${data.branch}</p>
+        <p>رقم الاقدمية: ${data.seniorityNumber}</p>
+        <p>العنوان: ${data.address}</p>
+        <p>رقم الهاتف: ${data.phoneNumber}</p>
+        <p>ورقم التعريف الوظيفي: ${data.jobID}</p>
+        <!-- Add more details as needed -->
+      </div>
+    `;
+
+    // Show the modal
+    $('#employeeProfileModal').modal('show');
+  }
+
   // Call the function to populate the table with random data
   populateTable();
 
@@ -224,7 +263,20 @@
   for (let i = 0; i < searchInputs.length; i++) {
     searchInputs[i].addEventListener("input", () => handleColumnSearch(i));
   }
+
+  // Attach event listener for showing employee profile on row click
+  const tbody = document.getElementById("employeeDataBody");
+  tbody.addEventListener("click", function (event) {
+    const target = event.target;
+    if (target.tagName === "TD") {
+      const rowIndex = target.parentElement.rowIndex - 1; // Adjust for the header row
+      const rows = tbody.getElementsByTagName("tr");
+      const data = generateRandomData(); // Replace with actual data retrieval logic
+      showEmployeeProfile(data);
+    }
+  });
 </script>
+
 
 </body>
 </html>
