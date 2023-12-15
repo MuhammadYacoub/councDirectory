@@ -87,13 +87,31 @@
   <!-- ربط السكريبت لتحميل النموذج -->
   <script>
     function downloadForm() {
-      // احصل على قيمة التصنيف المختار
+      // Check if all required fields are filled
       var serviceCategory = document.getElementById("serviceCategory").value;
-
-      // افتح نافذة جديدة لتحميل النموذج المختار
-      window.open("/forms/" + serviceCategory + ".jpg", "_blank");
+      var name = document.getElementById("name").value;
+      var degree = document.getElementById("degree").value;
+      var branch = document.getElementById("branch").value;
+      var department = document.getElementById("department").value;
+      var mobile = document.getElementById("mobile").value;
+  
+      if (
+        serviceCategory !== "" &&
+        name !== "" &&
+        degree !== "" &&
+        branch !== "" &&
+        department !== "" &&
+        mobile !== ""
+      ) {
+        // Open a new window to download the selected form
+        window.open("/forms/" + serviceCategory + ".jpg", "_blank");
+      } else {
+        // Alert the user to fill in all required fields
+        alert("يرجى ملء جميع الحقول المطلوبة قبل تحميل النموذج.");
+      }
     }
   </script>
+  
 
   <!-- ربط الجيكويري وبوببر -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
