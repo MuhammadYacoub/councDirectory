@@ -33,7 +33,27 @@
             body, p, h1, h2, h3, h4, h5, h6 {
                 font-family: 'Alexandria', sans-serif;
             }
+        
+            /* Default font size for larger devices */
+            body {
+                font-size: 12px;
+            }
+        
+            /* Smaller font size for tablets */
+            @media (max-width: 768px) {
+                body {
+                    font-size: 14px;
+                }
+            }
+        
+            /* Even smaller font size for mobile phones */
+            @media (max-width: 480px) {
+                body {
+                    font-size: 12px;
+                }
+            }
         </style>
+        
         <!-- images transformation  -->
         <style>
             .square-image-wrapper {
@@ -67,7 +87,7 @@
                 <!-- Main Menu -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="https://muhammadyacoub.github.io/New-Landing-Page/">موقع الهيئة</a>
-        <a class="navbar-brand" href="/HelthCare.html">طبات صندوق الرعاية الصحية</a>
+        <a class="navbar-brand" href="/HelthCare.html">طلبات صندوق الرعاية الصحية</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
